@@ -1,0 +1,1876 @@
+  [1m[35m (26.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (17.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRestaurants (20230319084446)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "restaurants" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230319084446"]]
+  [1m[36mTRANSACTION (13.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePizzas (20230319085256)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "pizzas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "ingredients" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230319085256"]]
+  [1m[36mTRANSACTION (15.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRestaurantPizzas (20230319090141)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "restaurant_pizzas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer, "pizza_id" integer NOT NULL, "restaurant_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_ab3bb148dc"
+FOREIGN KEY ("pizza_id")
+  REFERENCES "pizzas" ("id")
+, CONSTRAINT "fk_rails_f279821f06"
+FOREIGN KEY ("restaurant_id")
+  REFERENCES "restaurants" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_restaurant_pizzas_on_pizza_id" ON "restaurant_pizzas" ("pizza_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_restaurant_pizzas_on_restaurant_id" ON "restaurant_pizzas" ("restaurant_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230319090141"]]
+  [1m[36mTRANSACTION (18.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-03-19 14:02:58.009673"], ["updated_at", "2023-03-19 14:02:58.009673"]]
+  [1m[36mTRANSACTION (11.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2023-03-19 19:51:33 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as */*
+  Rendering /home/abdiaziz/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/abdiaziz/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 4.3ms | Allocations: 766)
+Completed 200 OK in 51ms (Views: 17.8ms | ActiveRecord: 0.0ms | Allocations: 6694)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRestaurant Create (1.0ms)[0m  [1m[32mINSERT INTO "restaurants" ("name", "address", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "86 Box"], ["address", "864 McGlynn Islands"], ["created_at", "2023-03-19 17:34:12.773518"], ["updated_at", "2023-03-19 17:34:12.773518"]]
+  [1m[36mTRANSACTION (13.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRestaurant Create (0.3ms)[0m  [1m[32mINSERT INTO "restaurants" ("name", "address", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Orange Pizza"], ["address", "217 Lakenya Tunnel"], ["created_at", "2023-03-19 17:34:12.795877"], ["updated_at", "2023-03-19 17:34:12.795877"]]
+  [1m[36mTRANSACTION (15.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRestaurant Create (0.3ms)[0m  [1m[32mINSERT INTO "restaurants" ("name", "address", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Salty House"], ["address", "749 Cherryl Alley"], ["created_at", "2023-03-19 17:34:12.817900"], ["updated_at", "2023-03-19 17:34:12.817900"]]
+  [1m[36mTRANSACTION (11.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRestaurant Create (0.8ms)[0m  [1m[32mINSERT INTO "restaurants" ("name", "address", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Salty Pizza"], ["address", "3407 Lyndon Gateway"], ["created_at", "2023-03-19 17:34:12.839526"], ["updated_at", "2023-03-19 17:34:12.839526"]]
+  [1m[36mTRANSACTION (11.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRestaurant Create (1.1ms)[0m  [1m[32mINSERT INTO "restaurants" ("name", "address", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Blue Gastropub"], ["address", "404 Pfannerstill Burg"], ["created_at", "2023-03-19 17:34:12.872849"], ["updated_at", "2023-03-19 17:34:12.872849"]]
+  [1m[36mTRANSACTION (11.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRestaurant Create (0.3ms)[0m  [1m[32mINSERT INTO "restaurants" ("name", "address", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Sweet Eatery"], ["address", "483 Hermann Plains"], ["created_at", "2023-03-19 17:36:20.257947"], ["updated_at", "2023-03-19 17:36:20.257947"]]
+  [1m[36mTRANSACTION (14.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRestaurant Create (0.3ms)[0m  [1m[32mINSERT INTO "restaurants" ("name", "address", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "WP Cafe"], ["address", "9870 O'Hara Groves"], ["created_at", "2023-03-19 17:36:20.277186"], ["updated_at", "2023-03-19 17:36:20.277186"]]
+  [1m[36mTRANSACTION (10.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRestaurant Create (0.3ms)[0m  [1m[32mINSERT INTO "restaurants" ("name", "address", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Blue Plate Deli"], ["address", "8151 McGlynn Freeway"], ["created_at", "2023-03-19 17:36:20.291206"], ["updated_at", "2023-03-19 17:36:20.291206"]]
+  [1m[36mTRANSACTION (10.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRestaurant Create (0.3ms)[0m  [1m[32mINSERT INTO "restaurants" ("name", "address", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Silver Box"], ["address", "4080 Cole Station"], ["created_at", "2023-03-19 17:36:20.306894"], ["updated_at", "2023-03-19 17:36:20.306894"]]
+  [1m[36mTRANSACTION (11.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRestaurant Create (0.8ms)[0m  [1m[32mINSERT INTO "restaurants" ("name", "address", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Red BBQ"], ["address", "683 Johns Crescent"], ["created_at", "2023-03-19 17:36:20.326065"], ["updated_at", "2023-03-19 17:36:20.326065"]]
+  [1m[36mTRANSACTION (12.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.3ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Souvlaki"], ["ingredients", "Lychees"], ["created_at", "2023-03-19 17:36:20.373781"], ["updated_at", "2023-03-19 17:36:20.373781"]]
+  [1m[36mTRANSACTION (10.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.4ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "California Maki"], ["ingredients", "Semolina"], ["created_at", "2023-03-19 17:36:20.390875"], ["updated_at", "2023-03-19 17:36:20.390875"]]
+  [1m[36mTRANSACTION (14.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.4ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Tacos"], ["ingredients", "Haloumi"], ["created_at", "2023-03-19 17:36:20.411855"], ["updated_at", "2023-03-19 17:36:20.411855"]]
+  [1m[36mTRANSACTION (10.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.5ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Cheeseburger"], ["ingredients", "Red Wine"], ["created_at", "2023-03-19 17:36:20.428984"], ["updated_at", "2023-03-19 17:36:20.428984"]]
+  [1m[36mTRANSACTION (10.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.8ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Meatballs with Sauce"], ["ingredients", "Kale"], ["created_at", "2023-03-19 17:36:20.446607"], ["updated_at", "2023-03-19 17:36:20.446607"]]
+  [1m[36mTRANSACTION (10.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.6ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Caesar Salad"], ["ingredients", "Garlic"], ["created_at", "2023-03-19 17:36:20.468795"], ["updated_at", "2023-03-19 17:36:20.468795"]]
+  [1m[36mTRANSACTION (15.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.7ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Pierogi"], ["ingredients", "Kiwi Fruit"], ["created_at", "2023-03-19 17:36:20.493599"], ["updated_at", "2023-03-19 17:36:20.493599"]]
+  [1m[36mTRANSACTION (17.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.5ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Pork Belly Buns"], ["ingredients", "Tea Oil"], ["created_at", "2023-03-19 17:36:20.521714"], ["updated_at", "2023-03-19 17:36:20.521714"]]
+  [1m[36mTRANSACTION (9.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.3ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Peking Duck"], ["ingredients", "Albacore Tuna"], ["created_at", "2023-03-19 17:36:20.537497"], ["updated_at", "2023-03-19 17:36:20.537497"]]
+  [1m[36mTRANSACTION (10.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.3ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Barbecue Ribs"], ["ingredients", "Calamari"], ["created_at", "2023-03-19 17:36:20.553395"], ["updated_at", "2023-03-19 17:36:20.553395"]]
+  [1m[36mTRANSACTION (10.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.3ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Teriyaki Chicken Donburi"], ["ingredients", "Bran"], ["created_at", "2023-03-19 17:36:20.570334"], ["updated_at", "2023-03-19 17:36:20.570334"]]
+  [1m[36mTRANSACTION (12.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (1.0ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "California Maki"], ["ingredients", "Bay Leaves"], ["created_at", "2023-03-19 17:36:20.590334"], ["updated_at", "2023-03-19 17:36:20.590334"]]
+  [1m[36mTRANSACTION (11.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.5ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Cauliflower Penne"], ["ingredients", "Soba"], ["created_at", "2023-03-19 17:36:20.619850"], ["updated_at", "2023-03-19 17:36:20.619850"]]
+  [1m[36mTRANSACTION (11.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.6ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Peking Duck"], ["ingredients", "Pumpkin"], ["created_at", "2023-03-19 17:36:20.639252"], ["updated_at", "2023-03-19 17:36:20.639252"]]
+  [1m[36mTRANSACTION (10.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.7ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Fettuccine Alfredo"], ["ingredients", "Ricemilk"], ["created_at", "2023-03-19 17:36:20.658915"], ["updated_at", "2023-03-19 17:36:20.658915"]]
+  [1m[36mTRANSACTION (11.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.4ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Ricotta Stuffed Ravioli"], ["ingredients", "Swordfish"], ["created_at", "2023-03-19 17:36:20.679078"], ["updated_at", "2023-03-19 17:36:20.679078"]]
+  [1m[36mTRANSACTION (10.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.4ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Mushroom Risotto"], ["ingredients", "Kidneys"], ["created_at", "2023-03-19 17:36:20.694725"], ["updated_at", "2023-03-19 17:36:20.694725"]]
+  [1m[36mTRANSACTION (10.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.5ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Mushroom Risotto"], ["ingredients", "Mackerel"], ["created_at", "2023-03-19 17:36:20.710503"], ["updated_at", "2023-03-19 17:36:20.710503"]]
+  [1m[36mTRANSACTION (9.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.5ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Tuna Sashimi"], ["ingredients", "Dragonfruit"], ["created_at", "2023-03-19 17:36:20.726118"], ["updated_at", "2023-03-19 17:36:20.726118"]]
+  [1m[36mTRANSACTION (10.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Create (0.4ms)[0m  [1m[32mINSERT INTO "pizzas" ("name", "ingredients", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Barbecue Ribs"], ["ingredients", "Cake"], ["created_at", "2023-03-19 17:36:20.744517"], ["updated_at", "2023-03-19 17:36:20.744517"]]
+  [1m[36mTRANSACTION (9.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (3.3ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 11], ["pizza_id", 20], ["restaurant_id", 4], ["created_at", "2023-03-19 17:36:20.812648"], ["updated_at", "2023-03-19 17:36:20.812648"]]
+  [1m[36mTRANSACTION (12.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (0.5ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 25], ["pizza_id", 19], ["restaurant_id", 3], ["created_at", "2023-03-19 17:36:20.837948"], ["updated_at", "2023-03-19 17:36:20.837948"]]
+  [1m[36mTRANSACTION (11.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (0.4ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 26], ["pizza_id", 10], ["restaurant_id", 5], ["created_at", "2023-03-19 17:36:20.858045"], ["updated_at", "2023-03-19 17:36:20.858045"]]
+  [1m[36mTRANSACTION (11.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (0.4ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 26], ["pizza_id", 11], ["restaurant_id", 2], ["created_at", "2023-03-19 17:36:20.878845"], ["updated_at", "2023-03-19 17:36:20.878845"]]
+  [1m[36mTRANSACTION (11.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (0.4ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 16], ["pizza_id", 20], ["restaurant_id", 1], ["created_at", "2023-03-19 17:36:20.899591"], ["updated_at", "2023-03-19 17:36:20.899591"]]
+  [1m[36mTRANSACTION (12.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.4ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.4ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (1.2ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 8], ["pizza_id", 10], ["restaurant_id", 2], ["created_at", "2023-03-19 17:36:20.933711"], ["updated_at", "2023-03-19 17:36:20.933711"]]
+  [1m[36mTRANSACTION (13.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.4ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (0.9ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 5], ["pizza_id", 15], ["restaurant_id", 3], ["created_at", "2023-03-19 17:36:20.976950"], ["updated_at", "2023-03-19 17:36:20.976950"]]
+  [1m[36mTRANSACTION (12.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.5ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (0.8ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 9], ["pizza_id", 18], ["restaurant_id", 1], ["created_at", "2023-03-19 17:36:21.019113"], ["updated_at", "2023-03-19 17:36:21.019113"]]
+  [1m[36mTRANSACTION (12.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.3ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (1.1ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 9], ["pizza_id", 15], ["restaurant_id", 3], ["created_at", "2023-03-19 17:36:21.055177"], ["updated_at", "2023-03-19 17:36:21.055177"]]
+  [1m[36mTRANSACTION (13.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (0.6ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 27], ["pizza_id", 13], ["restaurant_id", 3], ["created_at", "2023-03-19 17:36:21.109625"], ["updated_at", "2023-03-19 17:36:21.109625"]]
+  [1m[36mTRANSACTION (12.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (0.6ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 16], ["pizza_id", 11], ["restaurant_id", 5], ["created_at", "2023-03-19 17:36:21.137296"], ["updated_at", "2023-03-19 17:36:21.137296"]]
+  [1m[36mTRANSACTION (12.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (1.3ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 26], ["pizza_id", 4], ["restaurant_id", 2], ["created_at", "2023-03-19 17:36:21.158749"], ["updated_at", "2023-03-19 17:36:21.158749"]]
+  [1m[36mTRANSACTION (11.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (1.0ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 16], ["pizza_id", 20], ["restaurant_id", 3], ["created_at", "2023-03-19 17:36:21.181626"], ["updated_at", "2023-03-19 17:36:21.181626"]]
+  [1m[36mTRANSACTION (17.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (1.0ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (1.0ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (1.7ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 29], ["pizza_id", 14], ["restaurant_id", 2], ["created_at", "2023-03-19 17:36:21.242658"], ["updated_at", "2023-03-19 17:36:21.242658"]]
+  [1m[36mTRANSACTION (13.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (1.0ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 26], ["pizza_id", 1], ["restaurant_id", 5], ["created_at", "2023-03-19 17:36:21.284943"], ["updated_at", "2023-03-19 17:36:21.284943"]]
+  [1m[36mTRANSACTION (11.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (1.3ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 8], ["pizza_id", 2], ["restaurant_id", 1], ["created_at", "2023-03-19 17:36:21.313479"], ["updated_at", "2023-03-19 17:36:21.313479"]]
+  [1m[36mTRANSACTION (12.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.9ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (0.6ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 7], ["pizza_id", 6], ["restaurant_id", 1], ["created_at", "2023-03-19 17:36:21.356152"], ["updated_at", "2023-03-19 17:36:21.356152"]]
+  [1m[36mTRANSACTION (14.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (0.6ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 12], ["pizza_id", 20], ["restaurant_id", 3], ["created_at", "2023-03-19 17:36:21.384105"], ["updated_at", "2023-03-19 17:36:21.384105"]]
+  [1m[36mTRANSACTION (11.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (0.5ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 19], ["pizza_id", 20], ["restaurant_id", 1], ["created_at", "2023-03-19 17:36:21.406742"], ["updated_at", "2023-03-19 17:36:21.406742"]]
+  [1m[36mTRANSACTION (12.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPizza Load (0.9ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mRestaurant Load (0.4ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRestaurantPizza Create (1.0ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 15], ["pizza_id", 13], ["restaurant_id", 4], ["created_at", "2023-03-19 17:36:21.455300"], ["updated_at", "2023-03-19 17:36:21.455300"]]
+  [1m[36mTRANSACTION (12.5ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 127.0.0.1 at 2023-03-19 21:56:18 +0300
+Processing by Rails::WelcomeController#index as */*
+  Rendering /home/abdiaziz/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/abdiaziz/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 3.2ms | Allocations: 449)
+Completed 200 OK in 6ms (Views: 5.2ms | Allocations: 1188)
+
+
+Started GET "/index" for 127.0.0.1 at 2023-03-19 21:56:28 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/index"):
+  
+Started GET "/restaurants" for 127.0.0.1 at 2023-03-19 21:57:09 +0300
+Processing by RestaurantsController#index as */*
+  [1m[36mRestaurant Load (0.4ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/controllers/restaurants_controller.rb:6:in `index'
+Completed 200 OK in 66ms (Views: 51.3ms | ActiveRecord: 2.7ms | Allocations: 20498)
+
+
+Started GET "/restaurants/4" for 127.0.0.1 at 2023-03-19 21:58:29 +0300
+Processing by RestaurantsController#show as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mRestaurant Load (0.4ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:13:in `show'
+Completed 200 OK in 38ms (Views: 0.9ms | ActiveRecord: 2.6ms | Allocations: 6368)
+
+
+Started GET "/restaurants/7" for 127.0.0.1 at 2023-03-19 21:59:04 +0300
+Processing by RestaurantsController#show as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mRestaurant Load (0.4ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:13:in `show'
+Completed 200 OK in 9ms (Views: 0.7ms | ActiveRecord: 0.4ms | Allocations: 619)
+
+
+Started GET "/restaurants/delete/18" for 127.0.0.1 at 2023-03-19 22:00:27 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/restaurants/delete/18"):
+  
+Started DELETE "/restaurants/18" for 127.0.0.1 at 2023-03-19 22:02:26 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurants_controller.rb:25: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+...render json: restaurant status: :No_content
+...                        ^~~~~~~
+):
+  
+app/controllers/restaurants_controller.rb:25: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+app/controllers/restaurants_controller.rb:25: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+app/controllers/restaurants_controller.rb:25: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+Started DELETE "/restaurants/18" for 127.0.0.1 at 2023-03-19 22:03:03 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurants_controller.rb:25: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+...render json: restaurant status: :Ok
+...                        ^~~~~~~
+):
+  
+app/controllers/restaurants_controller.rb:25: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+app/controllers/restaurants_controller.rb:25: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+app/controllers/restaurants_controller.rb:25: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+Started DELETE "/restaurants/18" for 127.0.0.1 at 2023-03-19 22:03:33 +0300
+  
+AbstractController::ActionNotFound (The action 'destroy' could not be found for RestaurantsController):
+  
+actionpack (7.0.4.3) lib/abstract_controller/base.rb:146:in `process'
+actionview (7.0.4.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.6.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.6.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.6.4) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.6.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.6.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started DELETE "/restaurants/18" for 127.0.0.1 at 2023-03-19 22:05:02 +0300
+  
+AbstractController::ActionNotFound (The action 'destroy' could not be found for RestaurantsController):
+  
+actionpack (7.0.4.3) lib/abstract_controller/base.rb:146:in `process'
+actionview (7.0.4.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.6.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.6.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.6.4) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.6.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.6.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started DELETE "/pizzas/" for 127.0.0.1 at 2023-03-19 22:06:08 +0300
+  
+ActionController::RoutingError (No route matches [DELETE] "/pizzas"):
+  
+Started GET "/pizzas/" for 127.0.0.1 at 2023-03-19 22:06:13 +0300
+Processing by PizzasController#index as */*
+Completed 500 Internal Server Error in 8ms (Allocations: 2227)
+
+
+  
+NameError (uninitialized constant PizzasController::Pizzas):
+  
+app/controllers/pizzas_controller.rb:4:in `index'
+Started GET "/pizzas/" for 127.0.0.1 at 2023-03-19 22:06:38 +0300
+Processing by PizzasController#index as */*
+  [1m[36mPizza Load (0.6ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:6:in `index'
+Completed 200 OK in 46ms (Views: 33.6ms | ActiveRecord: 3.0ms | Allocations: 19100)
+
+
+Started GET "/pizzas/all" for 127.0.0.1 at 2023-03-19 22:08:59 +0300
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for PizzasController):
+  
+actionpack (7.0.4.3) lib/abstract_controller/base.rb:146:in `process'
+actionview (7.0.4.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.6.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.6.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.6.4) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.6.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.6.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/pizzas" for 127.0.0.1 at 2023-03-19 22:09:07 +0300
+Processing by PizzasController#index as */*
+  [1m[36mPizza Load (0.7ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:6:in `index'
+Completed 200 OK in 12ms (Views: 10.1ms | ActiveRecord: 0.7ms | Allocations: 2802)
+
+
+Started GET "/pizza" for 127.0.0.1 at 2023-03-19 22:09:09 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/pizza"):
+  
+Started DELETE "/restaurant/19" for 127.0.0.1 at 2023-03-20 09:13:45 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [DELETE] "/restaurant/19"):
+  
+Started DELETE "/restaurants/19" for 127.0.0.1 at 2023-03-20 09:14:35 +0300
+  
+AbstractController::ActionNotFound (The action 'destroy' could not be found for RestaurantsController):
+  
+actionpack (7.0.4.3) lib/abstract_controller/base.rb:146:in `process'
+actionview (7.0.4.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.6.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.6.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.6.4) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.6.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.6.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started DELETE "/restaurants/19" for 127.0.0.1 at 2023-03-20 09:19:47 +0300
+  
+AbstractController::ActionNotFound (The action 'destroy' could not be found for RestaurantsController):
+  
+actionpack (7.0.4.3) lib/abstract_controller/base.rb:146:in `process'
+actionview (7.0.4.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.6.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.6.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.6.4) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.6.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.6.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started DELETE "/restaurants/19" for 127.0.0.1 at 2023-03-20 09:26:03 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"19"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 2ms (Allocations: 444)
+
+
+  
+ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+  
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:251:in `handle_unverified_request'
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:284:in `handle_unverified_request'
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:273:in `verify_authenticity_token'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:400:in `block in make_lambda'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:199:in `block (2 levels) in halting'
+actionpack (7.0.4.3) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:200:in `block in halting'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `block in invoke_before'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `each'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `invoke_before'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:116:in `block in run_callbacks'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:138:in `run_callbacks'
+actionpack (7.0.4.3) lib/abstract_controller/callbacks.rb:233:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/instrumentation.rb:67:in `block in process_action'
+activesupport (7.0.4.3) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.0.4.3) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (7.0.4.3) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.0.4.3) lib/action_controller/metal/instrumentation.rb:66:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.0.4.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (7.0.4.3) lib/abstract_controller/base.rb:151:in `process'
+actionview (7.0.4.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.6.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.6.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.6.4) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.6.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.6.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started DELETE "/restaurants/5" for 127.0.0.1 at 2023-03-20 09:26:58 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"5"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (Allocations: 440)
+
+
+  
+ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+  
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:251:in `handle_unverified_request'
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:284:in `handle_unverified_request'
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:273:in `verify_authenticity_token'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:400:in `block in make_lambda'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:199:in `block (2 levels) in halting'
+actionpack (7.0.4.3) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:200:in `block in halting'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `block in invoke_before'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `each'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `invoke_before'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:116:in `block in run_callbacks'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:138:in `run_callbacks'
+actionpack (7.0.4.3) lib/abstract_controller/callbacks.rb:233:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/instrumentation.rb:67:in `block in process_action'
+activesupport (7.0.4.3) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.0.4.3) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (7.0.4.3) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.0.4.3) lib/action_controller/metal/instrumentation.rb:66:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.0.4.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (7.0.4.3) lib/abstract_controller/base.rb:151:in `process'
+actionview (7.0.4.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.6.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.6.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.6.4) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.6.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.6.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/restaurants" for 127.0.0.1 at 2023-03-20 09:27:11 +0300
+Processing by RestaurantsController#index as */*
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/controllers/restaurants_controller.rb:7:in `index'
+Completed 200 OK in 111ms (Views: 36.8ms | ActiveRecord: 1.8ms | Allocations: 22797)
+
+
+Started DELETE "/restaurants/9" for 127.0.0.1 at 2023-03-20 09:27:36 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"9"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms | Allocations: 439)
+
+
+  
+ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+  
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:251:in `handle_unverified_request'
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:284:in `handle_unverified_request'
+actionpack (7.0.4.3) lib/action_controller/metal/request_forgery_protection.rb:273:in `verify_authenticity_token'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:400:in `block in make_lambda'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:199:in `block (2 levels) in halting'
+actionpack (7.0.4.3) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:200:in `block in halting'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `block in invoke_before'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `each'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:595:in `invoke_before'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:116:in `block in run_callbacks'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:138:in `run_callbacks'
+actionpack (7.0.4.3) lib/abstract_controller/callbacks.rb:233:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/instrumentation.rb:67:in `block in process_action'
+activesupport (7.0.4.3) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.0.4.3) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (7.0.4.3) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.0.4.3) lib/action_controller/metal/instrumentation.rb:66:in `process_action'
+actionpack (7.0.4.3) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.0.4.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (7.0.4.3) lib/abstract_controller/base.rb:151:in `process'
+actionview (7.0.4.3) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.6.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.6.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.6.4) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.6.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.6.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.6.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started DELETE "/restaurants/9" for 127.0.0.1 at 2023-03-20 09:29:06 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"9"}
+Can't verify CSRF token authenticity.
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:21:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurants_controller.rb:22:in `destroy'
+  [1m[36mRestaurantPizza Load (0.2ms)[0m  [1m[34mSELECT "restaurant_pizzas".* FROM "restaurant_pizzas" WHERE "restaurant_pizzas"."restaurant_id" = ?[0m  [["restaurant_id", 9]]
+  ↳ app/controllers/restaurants_controller.rb:22:in `destroy'
+  [1m[36mRestaurant Destroy (0.5ms)[0m  [1m[31mDELETE FROM "restaurants" WHERE "restaurants"."id" = ?[0m  [["id", 9]]
+  ↳ app/controllers/restaurants_controller.rb:22:in `destroy'
+  [1m[36mTRANSACTION (44.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurants_controller.rb:22:in `destroy'
+Completed 500 Internal Server Error in 173ms (ActiveRecord: 48.6ms | Allocations: 17818)
+
+
+  
+ArgumentError (Unrecognized status code :Success):
+  
+app/controllers/restaurants_controller.rb:24:in `destroy'
+Started DELETE "/restaurants/9" for 127.0.0.1 at 2023-03-20 09:29:59 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"9"}
+Can't verify CSRF token authenticity.
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:21:in `destroy'
+Completed 404 Not Found in 16ms (ActiveRecord: 2.0ms | Allocations: 4461)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Restaurant with 'id'=9):
+  
+app/controllers/restaurants_controller.rb:21:in `destroy'
+Started DELETE "/restaurants" for 127.0.0.1 at 2023-03-20 09:30:12 +0300
+  
+ActionController::RoutingError (No route matches [DELETE] "/restaurants"):
+  
+Started GET "/restaurants" for 127.0.0.1 at 2023-03-20 09:30:16 +0300
+Processing by RestaurantsController#index as */*
+  [1m[36mRestaurant Load (0.4ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/controllers/restaurants_controller.rb:7:in `index'
+Completed 200 OK in 15ms (Views: 14.2ms | ActiveRecord: 0.4ms | Allocations: 2656)
+
+
+Started DELETE "/restaurants/10" for 127.0.0.1 at 2023-03-20 09:30:37 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"10"}
+Can't verify CSRF token authenticity.
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:21:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurants_controller.rb:22:in `destroy'
+  [1m[36mRestaurantPizza Load (0.2ms)[0m  [1m[34mSELECT "restaurant_pizzas".* FROM "restaurant_pizzas" WHERE "restaurant_pizzas"."restaurant_id" = ?[0m  [["restaurant_id", 10]]
+  ↳ app/controllers/restaurants_controller.rb:22:in `destroy'
+  [1m[36mRestaurant Destroy (0.4ms)[0m  [1m[31mDELETE FROM "restaurants" WHERE "restaurants"."id" = ?[0m  [["id", 10]]
+  ↳ app/controllers/restaurants_controller.rb:22:in `destroy'
+  [1m[36mTRANSACTION (10.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurants_controller.rb:22:in `destroy'
+Completed 200 OK in 55ms (Views: 0.4ms | ActiveRecord: 11.7ms | Allocations: 8958)
+
+
+Started DELETE "/restaurants/10" for 127.0.0.1 at 2023-03-20 09:37:54 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurants_controller.rb:27: syntax error, unexpected constant, expecting `end'
+...ot found" }, status: :Not Found
+...                          ^~~~~
+):
+  
+app/controllers/restaurants_controller.rb:27: syntax error, unexpected constant, expecting `end'
+app/controllers/restaurants_controller.rb:27: syntax error, unexpected constant, expecting `end'
+app/controllers/restaurants_controller.rb:27: syntax error, unexpected constant, expecting `end'
+Started DELETE "/restaurants/10" for 127.0.0.1 at 2023-03-20 09:40:31 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"10"}
+Can't verify CSRF token authenticity.
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:21:in `destroy'
+Completed 404 Not Found in 11ms (ActiveRecord: 0.6ms | Allocations: 4078)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Restaurant with 'id'=10):
+  
+app/controllers/restaurants_controller.rb:21:in `destroy'
+Started DELETE "/restaurants/10" for 127.0.0.1 at 2023-03-20 09:42:04 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"10"}
+Can't verify CSRF token authenticity.
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:22:in `destroy'
+Completed 404 Not Found in 17ms (Views: 0.8ms | ActiveRecord: 3.0ms | Allocations: 4437)
+
+
+Started DELETE "/restaurants/105" for 127.0.0.1 at 2023-03-20 09:42:19 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"105"}
+Can't verify CSRF token authenticity.
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 105], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:22:in `destroy'
+Completed 404 Not Found in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 858)
+
+
+Started DELETE "/restaurants/df" for 127.0.0.1 at 2023-03-20 09:42:28 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"df"}
+Can't verify CSRF token authenticity.
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:22:in `destroy'
+Completed 404 Not Found in 4ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 858)
+
+
+Started DELETE "/restaurants/'//%5C" for 127.0.0.1 at 2023-03-20 09:42:49 +0300
+  
+ActionController::RoutingError (No route matches [DELETE] "/restaurants/'/%5C"):
+  
+Started DELETE "/restaurants/',.," for 127.0.0.1 at 2023-03-20 09:43:00 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"',"}
+Can't verify CSRF token authenticity.
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:22:in `destroy'
+Completed 404 Not Found in 3ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 852)
+
+
+Started DELETE "/restaurants/12" for 127.0.0.1 at 2023-03-20 09:45:10 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"12"}
+Can't verify CSRF token authenticity.
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:22:in `destroy'
+Completed 404 Not Found in 14ms (Views: 0.4ms | ActiveRecord: 2.1ms | Allocations: 4416)
+
+
+Started GET "/restaurants/5" for 127.0.0.1 at 2023-03-20 09:46:00 +0300
+Processing by RestaurantsController#show as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:14:in `show'
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 1638)
+
+
+Started GET "/restaurants/5" for 127.0.0.1 at 2023-03-20 09:49:07 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurants_controller.rb:16: syntax error, unexpected ',', expecting =>
+... render json: restaurant, {:id, :name, :address}
+...                              ^
+/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected ',', expecting =>
+app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected ',', expecting =>
+app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected ',', expecting =>
+app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/restaurants/5" for 127.0.0.1 at 2023-03-20 09:49:46 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurants_controller.rb:16: syntax error, unexpected ','
+... render json: restaurant, {id:, name:, address:}
+...                              ^
+/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected ','
+app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected ','
+app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected ','
+app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/restaurants/5" for 127.0.0.1 at 2023-03-20 09:50:05 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurants_controller.rb:16: syntax error, unexpected ','
+...render json: :restaurant, {id:, name:, address:}
+...                              ^
+/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected ','
+app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected ','
+app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected ','
+app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/restaurants/5" for 127.0.0.1 at 2023-03-20 09:50:46 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurants_controller.rb:16: syntax error, unexpected ':', expecting '}'
+...   render json: restaurant {id:, name:, address:}
+...                              ^
+/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected ':', expecting '}'
+app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected ':', expecting '}'
+app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected ':', expecting '}'
+app/controllers/restaurants_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/restaurants/5" for 127.0.0.1 at 2023-03-20 10:01:45 +0300
+Processing by RestaurantsController#show as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:14:in `show'
+Completed 200 OK in 13ms (Views: 0.4ms | ActiveRecord: 1.3ms | Allocations: 5294)
+
+
+Started GET "/restaurants/5" for 127.0.0.1 at 2023-03-20 10:02:26 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurants_controller.rb:16: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+...ender json: restaurant include: :Pizza
+...                       ^~~~~~~~
+):
+  
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+Started GET "/restaurants/5" for 127.0.0.1 at 2023-03-20 10:02:57 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurants_controller.rb:16: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+...ender json: restaurant include: :pizza
+...                       ^~~~~~~~
+):
+  
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+app/controllers/restaurants_controller.rb:16: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+Started GET "/restaurants/5" for 127.0.0.1 at 2023-03-20 10:03:17 +0300
+Processing by RestaurantsController#show as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:14:in `show'
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 1.6ms | Allocations: 8629)
+
+
+  
+NoMethodError (undefined method `pizza' for #<Restaurant:0x00007fdd8c38c5e0>
+Did you mean?  pizzas
+               pizzas=):
+  
+app/controllers/restaurants_controller.rb:16:in `show'
+Started GET "/restaurants/5" for 127.0.0.1 at 2023-03-20 10:03:52 +0300
+Processing by RestaurantsController#show as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:14:in `show'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" INNER JOIN "restaurant_pizzas" ON "pizzas"."id" = "restaurant_pizzas"."pizza_id" WHERE "restaurant_pizzas"."restaurant_id" = ?[0m  [["restaurant_id", 5]]
+  ↳ app/controllers/restaurants_controller.rb:16:in `show'
+Completed 200 OK in 67ms (Views: 48.8ms | ActiveRecord: 3.6ms | Allocations: 31210)
+
+
+Started GET "/restaurants/5" for 127.0.0.1 at 2023-03-20 10:10:41 +0300
+Processing by RestaurantsController#show as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:14:in `show'
+  [1m[36mPizza Load (0.5ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" INNER JOIN "restaurant_pizzas" ON "pizzas"."id" = "restaurant_pizzas"."pizza_id" WHERE "restaurant_pizzas"."restaurant_id" = ?[0m  [["restaurant_id", 5]]
+  ↳ app/controllers/restaurants_controller.rb:16:in `show'
+Completed 200 OK in 39ms (Views: 23.5ms | ActiveRecord: 1.2ms | Allocations: 14662)
+
+
+Started GET "/restaurants/12" for 127.0.0.1 at 2023-03-20 10:14:52 +0300
+Processing by RestaurantsController#show as */*
+  Parameters: {"id"=>"12"}
+  [1m[36mRestaurant Load (0.5ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:15:in `show'
+Completed 404 Not Found in 14ms (Views: 1.0ms | ActiveRecord: 1.7ms | Allocations: 4404)
+
+
+Started GET "/restaurants/12" for 127.0.0.1 at 2023-03-20 10:15:34 +0300
+Processing by RestaurantsController#show as */*
+  Parameters: {"id"=>"12"}
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:15:in `show'
+Completed 404 Not Found in 12ms (Views: 0.3ms | ActiveRecord: 0.9ms | Allocations: 4413)
+
+
+Started GET "/restaurants/" for 127.0.0.1 at 2023-03-20 10:16:07 +0300
+Processing by RestaurantsController#index as */*
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/controllers/restaurants_controller.rb:7:in `index'
+Completed 200 OK in 10ms (Views: 9.6ms | ActiveRecord: 0.3ms | Allocations: 2530)
+
+
+Started GET "/restaurants/" for 127.0.0.1 at 2023-03-20 10:16:46 +0300
+Processing by RestaurantsController#index as */*
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/controllers/restaurants_controller.rb:7:in `index'
+Completed 200 OK in 15ms (Views: 6.4ms | ActiveRecord: 1.2ms | Allocations: 5643)
+
+
+Started GET "/pizzas/" for 127.0.0.1 at 2023-03-20 10:18:36 +0300
+Processing by PizzasController#index as */*
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:6:in `index'
+Completed 200 OK in 15ms (Views: 6.9ms | ActiveRecord: 0.9ms | Allocations: 6593)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 10:45:24 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurant_pizzas_controller.rb:7: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+...  render json: new_user status: :created
+...                        ^~~~~~~
+/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurant_pizzas_controller.rb:9: syntax error, unexpected local variable or method, expecting '}'
+...rror: "Validation error" status: :unprocessable_entity}
+...                         ^~~~~~
+):
+  
+app/controllers/restaurant_pizzas_controller.rb:7: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+app/controllers/restaurant_pizzas_controller.rb:9: syntax error, unexpected local variable or method, expecting '}'
+app/controllers/restaurant_pizzas_controller.rb:7: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+app/controllers/restaurant_pizzas_controller.rb:9: syntax error, unexpected local variable or method, expecting '}'
+app/controllers/restaurant_pizzas_controller.rb:7: syntax error, unexpected tLABEL, expecting `do' or '{' or '('
+app/controllers/restaurant_pizzas_controller.rb:9: syntax error, unexpected local variable or method, expecting '}'
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 10:49:56 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/models/restaurant_pizza.rb:9: syntax error, unexpected ',', expecting ')'
+            error.add (:price, "price is too high")
+                             ^
+/home/abdiaziz/Development/code/phase-4/pizza-shop/app/models/restaurant_pizza.rb:9: syntax error, unexpected ')', expecting `end'
+...d (:price, "price is too high")
+...                              ^
+):
+  
+app/models/restaurant_pizza.rb:9: syntax error, unexpected ',', expecting ')'
+app/models/restaurant_pizza.rb:9: syntax error, unexpected ')', expecting `end'
+app/models/restaurant_pizza.rb:9: syntax error, unexpected ',', expecting ')'
+app/models/restaurant_pizza.rb:9: syntax error, unexpected ')', expecting `end'
+app/models/restaurant_pizza.rb:9: syntax error, unexpected ',', expecting ')'
+app/models/restaurant_pizza.rb:9: syntax error, unexpected ')', expecting `end'
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:00:42 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurant_pizzas_controller.rb:9: syntax error, unexpected local variable or method, expecting `end'
+...or: "Validation error" } status: :unprocessable_entity
+...                         ^~~~~~
+):
+  
+app/controllers/restaurant_pizzas_controller.rb:9: syntax error, unexpected local variable or method, expecting `end'
+app/controllers/restaurant_pizzas_controller.rb:9: syntax error, unexpected local variable or method, expecting `end'
+app/controllers/restaurant_pizzas_controller.rb:9: syntax error, unexpected local variable or method, expecting `end'
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:01:25 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/models/restaurant_pizza.rb:9: syntax error, unexpected ',', expecting ')'
+            error.add (:price, "price is too high")
+                             ^
+/home/abdiaziz/Development/code/phase-4/pizza-shop/app/models/restaurant_pizza.rb:9: syntax error, unexpected ')', expecting `end'
+...d (:price, "price is too high")
+...                              ^
+):
+  
+app/models/restaurant_pizza.rb:9: syntax error, unexpected ',', expecting ')'
+app/models/restaurant_pizza.rb:9: syntax error, unexpected ')', expecting `end'
+app/models/restaurant_pizza.rb:9: syntax error, unexpected ',', expecting ')'
+app/models/restaurant_pizza.rb:9: syntax error, unexpected ')', expecting `end'
+app/models/restaurant_pizza.rb:9: syntax error, unexpected ',', expecting ')'
+app/models/restaurant_pizza.rb:9: syntax error, unexpected ')', expecting `end'
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:02:29 +0300
+  
+NoMethodError (undefined method `Validate' for #<Class:0x00007fdd8067f420>
+Did you mean?  validates
+               validates!):
+  
+app/models/restaurant_pizza.rb:5:in `<class:RestaurantPizza>'
+app/models/restaurant_pizza.rb:1:in `<main>'
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:06:35 +0300
+  
+NoMethodError (undefined method `Validate' for #<Class:0x00007fdd8067f420>
+Did you mean?  validates
+               validates!):
+  
+app/models/restaurant_pizza.rb:5:in `<class:RestaurantPizza>'
+app/models/restaurant_pizza.rb:1:in `<main>'
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:07:12 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>20, "pizza_id"=>9, "restaurant_id"=>3, "restaurant_pizza"=>{"price"=>20, "pizza_id"=>9, "restaurant_id"=>3}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd8ccceab8>, params: {"price"=>20, "pizza_id"=>9, "restaurant_id"=>3, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>20, "pizza_id"=>9, "restaurant_id"=>3}} }[0m
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.7ms | Allocations: 4149)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'price' for Pizza.):
+  
+app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:09:03 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>20, "pizza_id"=>9, "restaurant_id"=>3, "restaurant_pizza"=>{"price"=>20, "pizza_id"=>9, "restaurant_id"=>3}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd8c9c0f38>, params: {"price"=>20, "pizza_id"=>9, "restaurant_id"=>3, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>20, "pizza_id"=>9, "restaurant_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (3.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 500 Internal Server Error in 90ms (ActiveRecord: 6.8ms | Allocations: 31085)
+
+
+  
+NameError (undefined local variable or method `error' for #<RestaurantPizza:0x00007fdd8c550250>
+Did you mean?  errors
+               @errors):
+  
+app/models/restaurant_pizza.rb:9:in `out_of_range'
+app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:09:29 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>20, "pizza_id"=>9, "restaurant_id"=>3, "restaurant_pizza"=>{"price"=>20, "pizza_id"=>9, "restaurant_id"=>3}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd8cd6d3e8>, params: {"price"=>20, "pizza_id"=>9, "restaurant_id"=>3, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>20, "pizza_id"=>9, "restaurant_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 200 OK in 42ms (Views: 0.3ms | ActiveRecord: 4.6ms | Allocations: 14679)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:10:19 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>20, "pizza_id"=>9, "restaurant_id"=>3, "restaurant_pizza"=>{"price"=>20, "pizza_id"=>9, "restaurant_id"=>3}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd948f4980>, params: {"price"=>20, "pizza_id"=>9, "restaurant_id"=>3, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>20, "pizza_id"=>9, "restaurant_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurantPizza Create (0.6ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 20], ["pizza_id", 9], ["restaurant_id", 3], ["created_at", "2023-03-20 08:10:19.307733"], ["updated_at", "2023-03-20 08:10:19.307733"]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (12.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 201 Created in 56ms (Views: 0.6ms | ActiveRecord: 15.6ms | Allocations: 15351)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:10:32 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>40, "pizza_id"=>9, "restaurant_id"=>3, "restaurant_pizza"=>{"price"=>40, "pizza_id"=>9, "restaurant_id"=>3}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd9412c6d0>, params: {"price"=>40, "pizza_id"=>9, "restaurant_id"=>3, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>40, "pizza_id"=>9, "restaurant_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.4ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 200 OK in 26ms (Views: 0.4ms | ActiveRecord: 1.0ms | Allocations: 3353)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:13:13 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>40, "pizza_id"=>9, "restaurant_id"=>3, "restaurant_pizza"=>{"price"=>40, "pizza_id"=>9, "restaurant_id"=>3}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd98a78eb0>, params: {"price"=>40, "pizza_id"=>9, "restaurant_id"=>3, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>40, "pizza_id"=>9, "restaurant_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 500 Internal Server Error in 49ms (ActiveRecord: 3.6ms | Allocations: 16930)
+
+
+  
+NoMethodError (undefined method `record' for #<RestaurantPizza:0x00007fdd88c19860>):
+  
+app/controllers/restaurant_pizzas_controller.rb:9:in `create'
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:13:45 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>40, "pizza_id"=>9, "restaurant_id"=>3, "restaurant_pizza"=>{"price"=>40, "pizza_id"=>9, "restaurant_id"=>3}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd9447d2f8>, params: {"price"=>40, "pizza_id"=>9, "restaurant_id"=>3, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>40, "pizza_id"=>9, "restaurant_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 422 Unprocessable Entity in 490ms (Views: 0.2ms | ActiveRecord: 3.3ms | Allocations: 362741)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:16:34 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>0, "pizza_id"=>9, "restaurant_id"=>3, "restaurant_pizza"=>{"price"=>0, "pizza_id"=>9, "restaurant_id"=>3}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd807c1158>, params: {"price"=>0, "pizza_id"=>9, "restaurant_id"=>3, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>0, "pizza_id"=>9, "restaurant_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 422 Unprocessable Entity in 35ms (Views: 0.4ms | ActiveRecord: 2.7ms | Allocations: 14717)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:18:05 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>1, "pizza_id"=>24, "restaurant_id"=>5, "restaurant_pizza"=>{"price"=>1, "pizza_id"=>24, "restaurant_id"=>5}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd94165840>, params: {"price"=>1, "pizza_id"=>24, "restaurant_id"=>5, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>1, "pizza_id"=>24, "restaurant_id"=>5}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 422 Unprocessable Entity in 15ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 3835)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:18:45 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>4, "pizza_id"=>24, "restaurant_id"=>5, "restaurant_pizza"=>{"price"=>4, "pizza_id"=>24, "restaurant_id"=>5}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd949f2cd8>, params: {"price"=>4, "pizza_id"=>24, "restaurant_id"=>5, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>4, "pizza_id"=>24, "restaurant_id"=>5}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 422 Unprocessable Entity in 20ms (Views: 0.4ms | ActiveRecord: 0.6ms | Allocations: 3744)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:19:11 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>1, "pizza_id"=>14, "restaurant_id"=>5, "restaurant_pizza"=>{"price"=>1, "pizza_id"=>14, "restaurant_id"=>5}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd80067a38>, params: {"price"=>1, "pizza_id"=>14, "restaurant_id"=>5, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>1, "pizza_id"=>14, "restaurant_id"=>5}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.3ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurantPizza Create (1.5ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 1], ["pizza_id", 14], ["restaurant_id", 5], ["created_at", "2023-03-20 08:19:11.100502"], ["updated_at", "2023-03-20 08:19:11.100502"]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (11.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 201 Created in 36ms (Views: 0.6ms | ActiveRecord: 14.1ms | Allocations: 3597)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:19:42 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>30, "pizza_id"=>3, "restaurant_id"=>1, "restaurant_pizza"=>{"price"=>30, "pizza_id"=>3, "restaurant_id"=>1}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd807c5ac8>, params: {"price"=>30, "pizza_id"=>3, "restaurant_id"=>1, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>30, "pizza_id"=>3, "restaurant_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurantPizza Create (0.5ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 30], ["pizza_id", 3], ["restaurant_id", 1], ["created_at", "2023-03-20 08:19:43.016697"], ["updated_at", "2023-03-20 08:19:43.016697"]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (11.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 201 Created in 26ms (Views: 0.6ms | ActiveRecord: 12.7ms | Allocations: 3563)
+
+
+Started GET "/pizzas" for 127.0.0.1 at 2023-03-20 11:20:53 +0300
+Processing by PizzasController#index as */*
+  Parameters: {"price"=>30, "pizza_id"=>3, "restaurant_id"=>1, "pizza"=>{}}
+  [1m[36mPizza Load (0.5ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:6:in `index'
+Completed 200 OK in 10ms (Views: 9.3ms | ActiveRecord: 0.5ms | Allocations: 2834)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:25:49 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>15, "pizza_id"=>16, "restaurant_id"=>2, "restaurant_pizza"=>{"price"=>15, "pizza_id"=>16, "restaurant_id"=>2}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd89e2ad10>, params: {"price"=>15, "pizza_id"=>16, "restaurant_id"=>2, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>15, "pizza_id"=>16, "restaurant_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurantPizza Create (0.4ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 15], ["pizza_id", 16], ["restaurant_id", 2], ["created_at", "2023-03-20 08:25:50.038687"], ["updated_at", "2023-03-20 08:25:50.038687"]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (12.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 500 Internal Server Error in 118ms (ActiveRecord: 16.0ms | Allocations: 15126)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:27:37 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>15, "pizza_id"=>16, "restaurant_id"=>2, "restaurant_pizza"=>{"price"=>15, "pizza_id"=>16, "restaurant_id"=>2}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd8d0d7010>, params: {"price"=>15, "pizza_id"=>16, "restaurant_id"=>2, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>15, "pizza_id"=>16, "restaurant_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.4ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurantPizza Create (0.4ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 15], ["pizza_id", 16], ["restaurant_id", 2], ["created_at", "2023-03-20 08:27:37.433588"], ["updated_at", "2023-03-20 08:27:37.433588"]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (11.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 500 Internal Server Error in 51ms (ActiveRecord: 15.6ms | Allocations: 15130)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:28:47 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>15, "pizza_id"=>16, "restaurant_id"=>2, "restaurant_pizza"=>{"price"=>15, "pizza_id"=>16, "restaurant_id"=>2}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd8d808bb8>, params: {"price"=>15, "pizza_id"=>16, "restaurant_id"=>2, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>15, "pizza_id"=>16, "restaurant_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.3ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurantPizza Create (1.0ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 15], ["pizza_id", 16], ["restaurant_id", 2], ["created_at", "2023-03-20 08:28:47.332791"], ["updated_at", "2023-03-20 08:28:47.332791"]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (11.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+Completed 500 Internal Server Error in 55ms (ActiveRecord: 17.0ms | Allocations: 15098)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/controllers/restaurant_pizzas_controller.rb:6:in `create'
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:39:13 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>15, "pizza_id"=>16, "restaurant_id"=>2, "restaurant_pizza"=>{"price"=>15, "pizza_id"=>16, "restaurant_id"=>2}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd8c32f200>, params: {"price"=>15, "pizza_id"=>16, "restaurant_id"=>2, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>15, "pizza_id"=>16, "restaurant_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.3ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurantPizza Create (0.4ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 15], ["pizza_id", 16], ["restaurant_id", 2], ["created_at", "2023-03-20 08:39:13.369688"], ["updated_at", "2023-03-20 08:39:13.369688"]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (11.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+Completed 201 Created in 51ms (Views: 0.4ms | ActiveRecord: 13.4ms | Allocations: 14992)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:39:44 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>22, "pizza_id"=>6, "restaurant_id"=>4, "restaurant_pizza"=>{"price"=>22, "pizza_id"=>6, "restaurant_id"=>4}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd8d128488>, params: {"price"=>22, "pizza_id"=>6, "restaurant_id"=>4, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>22, "pizza_id"=>6, "restaurant_id"=>4}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurantPizza Create (0.6ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 22], ["pizza_id", 6], ["restaurant_id", 4], ["created_at", "2023-03-20 08:39:44.447167"], ["updated_at", "2023-03-20 08:39:44.447167"]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (11.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+Completed 201 Created in 29ms (Views: 0.5ms | ActiveRecord: 12.5ms | Allocations: 4038)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:42:24 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurant_pizzas_controller.rb:8: syntax error, unexpected ',', expecting =>
+...cept[:created_at, :updated_at], status: :created
+...                              ^
+):
+  
+app/controllers/restaurant_pizzas_controller.rb:8: syntax error, unexpected ',', expecting =>
+app/controllers/restaurant_pizzas_controller.rb:8: syntax error, unexpected ',', expecting =>
+app/controllers/restaurant_pizzas_controller.rb:8: syntax error, unexpected ',', expecting =>
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:42:46 +0300
+  
+SyntaxError (/home/abdiaziz/Development/code/phase-4/pizza-shop/app/controllers/restaurant_pizzas_controller.rb:8: syntax error, unexpected ',', expecting =>
+...cept[:created_at, :updated_at], status: :created
+...                              ^
+):
+  
+app/controllers/restaurant_pizzas_controller.rb:8: syntax error, unexpected ',', expecting =>
+app/controllers/restaurant_pizzas_controller.rb:8: syntax error, unexpected ',', expecting =>
+app/controllers/restaurant_pizzas_controller.rb:8: syntax error, unexpected ',', expecting =>
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:43:55 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>3, "pizza_id"=>20, "restaurant_id"=>5, "restaurant_pizza"=>{"price"=>3, "pizza_id"=>20, "restaurant_id"=>5}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd84d536f8>, params: {"price"=>3, "pizza_id"=>20, "restaurant_id"=>5, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>3, "pizza_id"=>20, "restaurant_id"=>5}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurantPizza Create (0.4ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 3], ["pizza_id", 20], ["restaurant_id", 5], ["created_at", "2023-03-20 08:43:55.616491"], ["updated_at", "2023-03-20 08:43:55.616491"]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (11.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+Completed 201 Created in 50ms (Views: 0.5ms | ActiveRecord: 15.0ms | Allocations: 15737)
+
+
+Started GET "/pizzas" for 127.0.0.1 at 2023-03-20 11:45:27 +0300
+Processing by PizzasController#index as */*
+  Parameters: {"price"=>3, "pizza_id"=>20, "restaurant_id"=>5, "pizza"=>{}}
+  [1m[36mPizza Load (0.4ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:6:in `index'
+Completed 200 OK in 10ms (Views: 8.2ms | ActiveRecord: 1.6ms | Allocations: 2866)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:53:01 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>0, "pizza_id"=>20, "restaurant_id"=>5, "restaurant_pizza"=>{"price"=>0, "pizza_id"=>20, "restaurant_id"=>5}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd88b80660>, params: {"price"=>0, "pizza_id"=>20, "restaurant_id"=>5, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>0, "pizza_id"=>20, "restaurant_id"=>5}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.3ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.1ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurantPizza Create (0.6ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("price", "pizza_id", "restaurant_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["price", 0], ["pizza_id", 20], ["restaurant_id", 5], ["created_at", "2023-03-20 08:53:01.942250"], ["updated_at", "2023-03-20 08:53:01.942250"]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (12.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+Completed 201 Created in 51ms (Views: 0.6ms | ActiveRecord: 16.3ms | Allocations: 15421)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:54:00 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>45, "pizza_id"=>20, "restaurant_id"=>5, "restaurant_pizza"=>{"price"=>45, "pizza_id"=>20, "restaurant_id"=>5}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd8d582ee8>, params: {"price"=>45, "pizza_id"=>20, "restaurant_id"=>5, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>45, "pizza_id"=>20, "restaurant_id"=>5}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+Completed 422 Unprocessable Entity in 41ms (Views: 0.3ms | ActiveRecord: 3.4ms | Allocations: 15533)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:54:30 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>0, "pizza_id"=>2, "restaurant_id"=>5, "restaurant_pizza"=>{"price"=>0, "pizza_id"=>2, "restaurant_id"=>5}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd8d00a880>, params: {"price"=>0, "pizza_id"=>2, "restaurant_id"=>5, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>0, "pizza_id"=>2, "restaurant_id"=>5}} }[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.3ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.3ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+Completed 422 Unprocessable Entity in 30ms (Views: 0.3ms | ActiveRecord: 1.3ms | Allocations: 3899)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:54:32 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>0, "pizza_id"=>2, "restaurant_id"=>5, "restaurant_pizza"=>{"price"=>0, "pizza_id"=>2, "restaurant_id"=>5}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd8cfd55b8>, params: {"price"=>0, "pizza_id"=>2, "restaurant_id"=>5, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>0, "pizza_id"=>2, "restaurant_id"=>5}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.4ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+Completed 422 Unprocessable Entity in 18ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 3899)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:54:51 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>0, "pizza_id"=>2, "restaurant_id"=>5, "restaurant_pizza"=>{"price"=>0, "pizza_id"=>2, "restaurant_id"=>5}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd959d6500>, params: {"price"=>0, "pizza_id"=>2, "restaurant_id"=>5, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>0, "pizza_id"=>2, "restaurant_id"=>5}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.3ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.5ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+Completed 500 Internal Server Error in 62ms (ActiveRecord: 3.9ms | Allocations: 17935)
+
+
+  
+NoMethodError (undefined method `validation errors' for #<RestaurantPizza:0x00007fdd9571e0b0>
+Did you mean?  validation_context):
+  
+app/controllers/restaurant_pizzas_controller.rb:10:in `create'
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:55:01 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>0, "pizza_id"=>2, "restaurant_id"=>5, "restaurant_pizza"=>{"price"=>0, "pizza_id"=>2, "restaurant_id"=>5}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd8d776a60>, params: {"price"=>0, "pizza_id"=>2, "restaurant_id"=>5, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>0, "pizza_id"=>2, "restaurant_id"=>5}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+Completed 422 Unprocessable Entity in 62ms (Views: 0.4ms | ActiveRecord: 7.4ms | Allocations: 15588)
+
+
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-03-20 11:55:19 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>36, "pizza_id"=>5, "restaurant_id"=>2, "restaurant_pizza"=>{"price"=>36, "pizza_id"=>5, "restaurant_id"=>2}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :restaurant_pizza. Context: { controller: RestaurantPizzasController, action: create, request: #<ActionDispatch::Request:0x00007fdd8d464b88>, params: {"price"=>36, "pizza_id"=>5, "restaurant_id"=>2, "controller"=>"restaurant_pizzas", "action"=>"create", "restaurant_pizza"=>{"price"=>36, "pizza_id"=>5, "restaurant_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:4:in `create'
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+Completed 422 Unprocessable Entity in 19ms (Views: 0.6ms | ActiveRecord: 0.9ms | Allocations: 3899)
+
+
+Started GET "/retaurants" for 127.0.0.1 at 2023-03-20 12:04:13 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/retaurants"):
+  
+Started GET "/retaurant" for 127.0.0.1 at 2023-03-20 12:04:30 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/retaurant"):
+  
+Started GET "/restaurants" for 127.0.0.1 at 2023-03-20 12:04:52 +0300
+Processing by RestaurantsController#index as */*
+  [1m[36mRestaurant Load (0.4ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/controllers/restaurants_controller.rb:7:in `index'
+Completed 200 OK in 54ms (Views: 30.3ms | ActiveRecord: 2.7ms | Allocations: 22106)
+
+
+Started GET "/pizzas" for 127.0.0.1 at 2023-03-20 12:05:10 +0300
+Processing by PizzasController#index as */*
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:6:in `index'
+Completed 200 OK in 26ms (Views: 19.0ms | ActiveRecord: 1.0ms | Allocations: 17667)
+
+
+Started GET "/" for 127.0.0.1 at 2023-03-20 21:17:27 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as */*
+  Rendering /usr/share/rvm/gems/ruby-2.7.4/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-2.7.4/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 6.1ms | Allocations: 766)
+Completed 200 OK in 84ms (Views: 21.2ms | ActiveRecord: 0.0ms | Allocations: 6690)
+
+
+Started GET "/restaurants" for 127.0.0.1 at 2023-03-20 21:18:15 +0300
+Processing by RestaurantsController#index as */*
+  [1m[36mRestaurant Load (0.6ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/controllers/restaurants_controller.rb:7:in `index'
+Completed 200 OK in 103ms (Views: 55.4ms | ActiveRecord: 3.2ms | Allocations: 20116)
+
+
+Started GET "/restaurants/5" for 127.0.0.1 at 2023-03-20 21:19:42 +0300
+Processing by RestaurantsController#show as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mRestaurant Load (0.6ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:15:in `show'
+  [1m[36mPizza Load (0.7ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" INNER JOIN "restaurant_pizzas" ON "pizzas"."id" = "restaurant_pizzas"."pizza_id" WHERE "restaurant_pizzas"."restaurant_id" = ?[0m  [["restaurant_id", 5]]
+  ↳ app/controllers/restaurants_controller.rb:17:in `show'
+Completed 200 OK in 254ms (Views: 183.4ms | ActiveRecord: 4.2ms | Allocations: 36967)
+
+
+Started DELETE "/restaurants/8" for 127.0.0.1 at 2023-03-20 21:21:14 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"8"}
+Can't verify CSRF token authenticity.
+  [1m[36mRestaurant Load (0.4ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:27:in `destroy'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurants_controller.rb:28:in `destroy'
+  [1m[36mRestaurantPizza Load (0.4ms)[0m  [1m[34mSELECT "restaurant_pizzas".* FROM "restaurant_pizzas" WHERE "restaurant_pizzas"."restaurant_id" = ?[0m  [["restaurant_id", 8]]
+  ↳ app/controllers/restaurants_controller.rb:28:in `destroy'
+  [1m[36mRestaurant Destroy (0.9ms)[0m  [1m[31mDELETE FROM "restaurants" WHERE "restaurants"."id" = ?[0m  [["id", 8]]
+  ↳ app/controllers/restaurants_controller.rb:28:in `destroy'
+  [1m[36mTRANSACTION (82.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurants_controller.rb:28:in `destroy'
+Completed 200 OK in 121ms (Views: 1.0ms | ActiveRecord: 86.0ms | Allocations: 3480)
+
+
+Started DELETE "/restaurants/8" for 127.0.0.1 at 2023-03-20 21:21:23 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"8"}
+Can't verify CSRF token authenticity.
+  [1m[36mRestaurant Load (0.6ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:27:in `destroy'
+Completed 404 Not Found in 7ms (Views: 0.5ms | ActiveRecord: 0.6ms | Allocations: 873)
+
+
+Started DELETE "/restaurants/7" for 127.0.0.1 at 2023-03-20 21:21:40 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mRestaurant Load (0.4ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:27:in `destroy'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurants_controller.rb:28:in `destroy'
+  [1m[36mRestaurantPizza Load (0.3ms)[0m  [1m[34mSELECT "restaurant_pizzas".* FROM "restaurant_pizzas" WHERE "restaurant_pizzas"."restaurant_id" = ?[0m  [["restaurant_id", 7]]
+  ↳ app/controllers/restaurants_controller.rb:28:in `destroy'
+  [1m[36mRestaurant Destroy (1.1ms)[0m  [1m[31mDELETE FROM "restaurants" WHERE "restaurants"."id" = ?[0m  [["id", 7]]
+  ↳ app/controllers/restaurants_controller.rb:28:in `destroy'
+  [1m[36mTRANSACTION (102.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurants_controller.rb:28:in `destroy'
+Completed 200 OK in 136ms (Views: 0.6ms | ActiveRecord: 105.0ms | Allocations: 2647)
+
+
+Started DELETE "/restaurants/7" for 127.0.0.1 at 2023-03-20 21:21:46 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:27:in `destroy'
+Completed 404 Not Found in 5ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 859)
+
+
+Started GET "/pizzas" for 127.0.0.1 at 2023-03-20 21:23:13 +0300
+Processing by PizzasController#index as */*
+  [1m[36mPizza Load (0.8ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:6:in `index'
+Completed 200 OK in 12ms (Views: 9.7ms | ActiveRecord: 0.8ms | Allocations: 1711)
+
+
